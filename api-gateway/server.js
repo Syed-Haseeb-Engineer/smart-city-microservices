@@ -1,3 +1,4 @@
+require('dotenv').config(); // Professional standard: Load environment variables
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
@@ -6,9 +7,13 @@ const app = express();
 app.use(cors());
 app.use(express.json()); 
 
-// Explicitly mapping to IPv4 loopback. Using 'localhost' was causing Mongoose connection timeouts on my Ubuntu environment.
-mongoose.connect('mongodb://127.0.0.1:27017/SmartCityDB')
-    .then(() => console.log("[Database] MongoDB connected securely."))
+
+const MONGO_URI = process.env.MONGO_URI || 'mongodb://127.0.0.1:27017/SmartCityDB';
+const PORT = process.env.PORT || 3000;
+
+
+mongoose.connect(MONGO_URI)
+    .then(() => console.log("[Database] MongoDB connected securely via Environment Config."))
     .catch(err => console.error("[Database Error] ", err));
 
 const citizenSchema = new mongoose.Schema({
@@ -32,4 +37,4 @@ app.post('/api/register', async (req, res) => {
     }
 });
 
-app.listen(3000, '127.0.0.1', () => console.log("Node Gateway running on port 3000"));
+app.listen(PORT, '127.0.0.1', () => console.log(`Node Gateway running securely on port ${PORT}`));

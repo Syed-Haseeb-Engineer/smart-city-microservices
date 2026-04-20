@@ -3,26 +3,26 @@
 
   <div style="border: 2px solid #007bff; padding: 15px; margin-bottom: 20px; border-radius: 5px;">
     <h3>Citizen Registration (Q1: Web UI)</h3>
-    <p style="font-size: 14px; color: #555;">Register a new citizen to the MongoDB Database via Node.js.</p>
+    <p style="font-size: 14px; color: #555;">Register a new citizen securely to the MongoDB Database via Node.js.</p>
     
     <div style="margin-bottom: 10px;">
-      <label><b>Full Name:</b> <br><input type="text" placeholder="e.g. Syed Haseeb" style="padding: 5px; width: 80%;"></label>
+      <label><b>Full Name:</b> <br><input [(ngModel)]="citizenData.name" type="text" placeholder="e.g. Syed Haseeb" style="padding: 5px; width: 80%;"></label>
     </div>
     <div style="margin-bottom: 10px;">
-      <label><b>National ID:</b> <br><input type="text" placeholder="e.g. 000000000" style="padding: 5px; width: 80%;"></label>
+      <label><b>National ID:</b> <br><input [(ngModel)]="citizenData.nationalId" type="text" placeholder="e.g. 000000000" style="padding: 5px; width: 80%;"></label>
     </div>
     <div style="margin-bottom: 15px;">
-      <label><b>Email:</b> <br><input type="email" placeholder="Enter Email" style="padding: 5px; width: 80%;"></label>
+      <label><b>Email:</b> <br><input [(ngModel)]="citizenData.email" type="email" placeholder="Enter Email" style="padding: 5px; width: 80%;"></label>
     </div>
     
-    <button style="background-color: #007bff; color: white; padding: 10px 15px; border: none; border-radius: 3px; cursor: pointer; font-weight: bold;">
-      Submit to Node.js Gateway
+    <button (click)="submitRegistration()" style="background-color: #007bff; color: white; padding: 10px 15px; border: none; border-radius: 3px; cursor: pointer; font-weight: bold;">
+      Submit
     </button>
   </div>
 
   <div style="border: 2px solid #333; padding: 15px; border-radius: 5px;">
     <h3>Live Traffic Rasterization (Q5: Computer Graphics)</h3>
-    <p style="font-size: 14px; color: #555;">Real-time rendering of Node.js traffic data using HTML5 Canvas.</p>
+    <p style="font-size: 14px; color: #555;">Real-time rendering of automated traffic data using HTML5 Canvas APIs.</p>
     
     <canvas #cityMapCanvas width="400" height="200" style="background: #eee; border: 1px solid #ccc; max-width: 100%; height: auto;"></canvas>
   </div>
