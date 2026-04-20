@@ -1,0 +1,5 @@
+node_modules/
+.angular/
+target/
+.DS_Store
+dist/
