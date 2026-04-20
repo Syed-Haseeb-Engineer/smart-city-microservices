@@ -33,10 +33,10 @@ public class RouteOptimizer {
             }
         }
         
-        // --- NEW: Print the actual mathematical values! ---
+        // Outputting the calculated data to verify the algorithm's efficiency
         System.out.println("   -> [Dijkstra] Optimized paths from Intersection " + startNode + ":");
         for (Map.Entry<Integer, Integer> entry : distances.entrySet()) {
-            if (entry.getKey() != startNode) { // We skip printing distance to itself (0)
+            if (entry.getKey() != startNode) { 
                 System.out.println("      * Fastest route to Intersection " + entry.getKey() + " is " + entry.getValue() + " minutes.");
             }
         }

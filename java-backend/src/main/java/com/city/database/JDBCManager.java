@@ -11,15 +11,13 @@ public class JDBCManager {
     public static Connection getConnection() {
         Connection connection = null;
         try {
-            // Establishing secure connection to Relational Database
+            // Establishing secure connection to the Relational Database for ACID compliance
             connection = DriverManager.getConnection(URL, USER, PASSWORD);
             System.out.println("[Database] JDBC Connection Successful. ACID compliance enabled.");
         } catch (SQLException e) {
-            // Exception handling ensures system robustness
+            // Catching the exception to prevent the whole Java backend from crashing if MySQL is down
             System.err.println("[Database Error] Connection failed: " + e.getMessage());
         }
         return connection;
     }
 }
-
-

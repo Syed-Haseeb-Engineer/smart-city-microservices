@@ -6,7 +6,7 @@ const app = express();
 app.use(cors());
 app.use(express.json()); 
 
-// FIX: Using 127.0.0.1 forces IPv4 routing, fixing the connection hang!
+// Explicitly mapping to IPv4 loopback. Using 'localhost' was causing Mongoose connection timeouts on my Ubuntu environment.
 mongoose.connect('mongodb://127.0.0.1:27017/SmartCityDB')
     .then(() => console.log("[Database] MongoDB connected securely."))
     .catch(err => console.error("[Database Error] ", err));
@@ -19,7 +19,8 @@ const citizenSchema = new mongoose.Schema({
 const Citizen = mongoose.model('Citizen', citizenSchema);
 
 app.post('/api/register', async (req, res) => {
-    console.log("\n[API] Incoming Citizen Registration:", req.body); // Logs the data to terminal
+    // Logging the incoming payload to verify the Angular frontend is sending data correctly
+    console.log("\n[API] Processing new registration payload:", req.body); 
     try {
         const newCitizen = new Citizen(req.body);
         await newCitizen.save();
@@ -31,4 +32,4 @@ app.post('/api/register', async (req, res) => {
     }
 });
 
-app.listen(3000, '127.0.0.1',  () => console.log("Node Gateway running on port 3000"));
+app.listen(3000, '127.0.0.1', () => console.log("Node Gateway running on port 3000"));
